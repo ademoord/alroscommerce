@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+<title>{{ title }}</title>
+
+{% block base_head %}
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" >
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h4 style="color:black;">About ALROS Technologies.</h4>
+        <h5 style="color:black;"><b>{{ nama }}</b></h5>
+        <div class="row">
+            <div class="col-7">
+                <img src="{% static 'img/alros-about.jpg' %}" alt="About ALROSTech." style="width:450px;">
+            </div>
+            <div class="col ml-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title" align="justify" style="color:black;">ALROS Technologies is an industrial informatics company based in Indonesia.
+                    Established in 1992, they provide some industrial engineering and informatics tools to empowering the performance edge.</h6>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
