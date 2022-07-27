@@ -1,3 +1,10 @@
+<!--
+
+    file: search/snippets/search-form.html
+	author: andromeda
+    desc: HTML template to handle the search form
+
+ -->
 <form method="GET" action="{% url 'search:query' %}" class="form my-2 my-lg-0">
     <div class="input-group">
         <input class="form-control" type="search" placeholder="Type 'GFD or Aux Supply'" name="q" aria-label="Search" value="{{ request.GET.q }}">

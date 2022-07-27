@@ -1,11 +1,29 @@
-{% extends "base.html" %}
-			
-{% block content %}
+<!--
 
-	{{ object.title }} <br/>
-	{{ object.description }} <br/>
-	{% if object.image %}
-		<img src="{{ object.image.url }}" class="img-fluid" />
-	{% endif %}
+    file: products/detail.html
+	author: andromeda
+    desc: HTML template to display the product detail
+
+ -->
+{% extends "base.html" %}
+
+{% block content %}
+<title>{{ object.title }}</title>
+    <div class='container'>
+        <div class='row'>
+            <div class='col'>
+            	<h1>{{ object.title }}</h1>
+                	{% if object.image %}
+                		<img src="{{ object.image.url }}" class="img-fluid" />
+                	{% endif %}
+                        <div class="card" style="width:18rem; float: right;">
+                    	    <h3 align="center">${{ object.price }}</h3>
+                                <button style="font-size:24px">Add to cart <i class="fa fa-shopping-cart"></i></button>
+                        <div class="card-body">
+                    <h5 class="card-title" align="justify" style="color:black;">{{ object.description|linebreaks }}</h5>
+                </div>
+        	</div>
+	    </div>
+	</div>
 
 {% endblock %}

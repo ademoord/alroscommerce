@@ -1,19 +1,52 @@
+<!--
+
+    file: base.html
+	author: andromeda
+    desc: HTML template to be referred as the basic template inheritance for all apps
+
+-->
 {% load static %}
+
 <!doctype html>
 	<html lang="en">
 		<head>
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Base Template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        {% if title %}
+		    <title>{{ title }} | ALROS Industrie Elektronik </title>
+        {% elif object.title %}
+		    <title>{{ object.title }} | ALROS Industrie Elektronik</title>
+        {% elif object_list %}
+		    <title>Product | ALROS Industrie Elektronik</title>
+        {% else %}
+		    <title>Empowering the Industrial Informatics. | ALROS Industrie Elektronik</title>
+        {% endif %}
 			{% include 'base/css.html' %}
 			{% block base_head %}{% endblock %}
 		</head>
 		<body>
-			{% include 'base/navbar.html' %}
+			{% include 'base/navbar.html' with brand_name='ALROSTech' %}
+            <div class='row'><div class='col-12'><hr/></div></div>
 			{% block content %}{% endblock %}
 
+            <div class='container'>
+                <div class='col'>
+                    <hr/>
+                        <center><img src="{% static 'img/logo-2022-black.png' %}" alt="ALROS Industrie und Elektronik" style="width:90px;">
+                            <h6><p style="color:black;">Empowering the Industrial Informatics.</p></h6>
+                        </center>
+                    <div class='row'><div class='col-12'><hr/></div></div>
+                    <!--    <center><img src="{% static 'img/logo-2020-black.png' %}" alt="ALROSTech Logo" style="width:90px;">-->
+                    <!--        <h6><p style="color:black;">Empowering the Industrial Informatics.</p></h6>-->
+                    <!--    </center>-->
+                    <div class='row'><div class='col-12'><hr/></div></div>
+                    <!--<div class='row'><div class='col-12'><hr/></div></div>-->
+                </div>
+            </div>
 
-			{% include 'base/css.html' %}
+			{% include 'base/js.html' %}
+			{% include 'base/footer.html' %}
+
 		</body>
 	</html>

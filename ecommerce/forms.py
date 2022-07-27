@@ -1,3 +1,8 @@
+#
+#   file 	: ecommerce/views.py
+#	author	: andromeda
+#   desc 	: Model parsing and variable retrieval for each eCommerce app URL controller
+#
 from django import forms
 from django.contrib.auth import get_user_model
 

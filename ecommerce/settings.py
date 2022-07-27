@@ -1,5 +1,5 @@
-# 
-#   file    : settings.py
+#
+#   file    : ecommerce/settings.py
 #   author  : andromeda
 #   desc    : Apps default configurations
 #
@@ -30,7 +30,7 @@ SECRET_KEY = '1wvtv69jxhs&r0!0cihs5rsav826g7gjlm@=n@nh=op2qneq%r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['alrosteknologi.ddns.net', '192.168.1.2']
+ALLOWED_HOSTS = ['alrosteknologi.ddns.net', '192.168.1.2', 'alroscommerce.pythonanywhere.com']
 
 
 # Application definition
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     # our apps
     'products',
+    'search',
+    'tags',
+    'carts',
 ]
 
 MIDDLEWARE = [
@@ -131,9 +134,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_my_proj"),
 ]
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
-
+# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
+# STATIC_ROOT = '/home/alroscommerce/static_cdn'
+STATIC_ROOT = '/home/alroscommerce/static_cdn/static_root'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
+MEDIA_ROOT = '/home/alroscommerce/static_cdn/media_root'

@@ -1,5 +1,30 @@
-{% for obj in object_list %}
+<!--
 
-<a href='{{ obj.get_absolute_url }}'>{{ obj.title }}<a/><br/>
+    file: product/list.html
+	author: andromeda
+    desc: HTML template to display the product list
 
-{% endfor %}
+ -->
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+
+    {% for obj in object_list %}
+        <div class='col'>
+            {{ forlooop.counter }}
+            {% include 'products/snippets/card.html' with instance=obj %}
+
+            {% if forloop.counter|divisibleby:3 %}
+            </div> </div><div class='row'><div class='col-12'><hr/></div>
+            {% else %}
+            </div>
+            {% endif %}
+
+
+
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

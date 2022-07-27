@@ -1,12 +1,14 @@
-# 
+#
 #   file 	: models.py
 #	author	: andromeda
-#   desc 	: The database objects modelling
+#   desc 	: The Product database objects modelling
 #
 import random
 import os
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import pre_save, post_save
+from django.urls import reverse
 
 from .utils import unique_slug_generator
 
@@ -30,12 +32,21 @@ def upload_image_path(instance, filename):
 
 # custom queryset -----------------------------------------------------------------
 
-class ProductQuerySet(models.query.QuerySet):				
+class ProductQuerySet(models.query.QuerySet):
 	def active(self):										# show only active products
 		return self.filter(active=True)
 
 	def featured(self):										# show only featured products
-		return self.filter(featured=True, active=True)		
+		return self.filter(featured=True, active=True)
+
+	def search(self, query):
+	    lookups = (Q(title__icontains=query) |
+	               Q(description__icontains=query) |
+	               Q(price__icontains=query) |
+	               Q(tag__title__icontains=query)
+	               )
+	    return self.filter(lookups)
+
 
 # main models managers ------------------------------------------------------------
 
@@ -46,7 +57,7 @@ class ProductManager(models.Manager):						# the Product model manager
 	def all(self):											# all active product manager
 		return self.get_queryset().active()
 
-	def features(self):										# all featured product manager
+	def featured(self):										# all featured product manager
 		return self.get_queryset().featured()
 
 	def get_by_id(self, id):								# all product manager by id
@@ -55,6 +66,8 @@ class ProductManager(models.Manager):						# the Product model manager
 			return qs.first()
 		return None
 
+	def search(self, query):
+	    return self.get_queryset().active().search(query)
 
 # models -------------------------------------------------------------------------
 
@@ -70,7 +83,7 @@ class Product(models.Model):
 	objects 	= ProductManager()
 
 	def get_absolute_url(self):
-		return "/products/{slug}/".format(slug=self.slug)
+		return reverse("products:detail", kwargs={"slug": self.slug})
 
 	def __str__(self):
 		return self.title

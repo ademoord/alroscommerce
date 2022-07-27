@@ -1,3 +1,8 @@
+#
+#   file 	: products/admin.py
+#	author	: andromeda
+#   desc 	: Admin page config for product app
+#
 from django.contrib import admin
 
 # Register your models here.

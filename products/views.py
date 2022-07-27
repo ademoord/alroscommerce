@@ -1,7 +1,7 @@
-# 
-#   file 	: views.py
+#
+#   file 	: products/views.py
 #	author	: andromeda
-#   desc 	: Model parsing and variable retrieval for each URL controller
+#   desc 	: Model parsing and variable retrieval for each products app URL controller
 #
 from django.http import Http404
 from django.views.generic import ListView, DetailView
@@ -23,15 +23,10 @@ class ProductFeaturedDetailView(DetailView):
 	queryset = Product.objects.all().featured()
 	template_name = "products/featured-detail.html"
 
-	# def get_queryset(self, *args, **kwargs):
-	# 	request = self.request
-	# 	return Product.objects.featured()
-
 
 # CBV List Views -------------------------------------------------------------------------
 
 class ProductListView(ListView):
-	# queryset = Product.objects.all()
 	template_name = "products/list.html"
 
 	def get_queryset(self, *args, **kwargs):
@@ -66,17 +61,16 @@ class ProductDetailSlugView(DetailView):
 			qs = Product.objects.filter(slug=slug, active=True)
 			instance = qs.first()
 		except:
-			raise Http404("Subhanallah...")
+			raise Http404("Hmm")
 		return instance
 
 
 class ProductDetailView(DetailView):
-	# queryset = Product.objects.all()
 	template_name = "products/detail.html"
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
-		print(context)		
+		print(context)
 		return context
 
 	def get_object(self, *args, **kwargs):
@@ -96,14 +90,16 @@ def product_detail_view(request, pk=None, *args, **kwargs):
 	if instance is None:
 		raise Http404("Product doesn't exist!")
 
-	# print('This is queryset = ' + str(instance))
-	# qs = Product.objects.filter(id=pk)
-	# if qs.exists() and qs.count() == 1:
-	# 	instance = qs.first()
-	# else:
-	# 	raise Http404("Product doesn't exist!")
-
 	context = {
+	    'title': 'Test title detail view product',
 		'object': instance
 	}
 	return render(request, "products/detail.html", context)
+
+
+
+
+
+
+
+

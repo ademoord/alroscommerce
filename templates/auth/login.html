@@ -1,5 +1,29 @@
+<!--
 
-<form method="POST"> {% csrf_token %}
-	{{ form }}
-	<button type="submit" class="btn btn-default">Submit</button>
-</form>
+    file: auth/login.html
+	author: andromeda
+    desc: HTML template to display the website login page
+
+-->
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="col">
+            <center>
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Want an easier shopping experience? Login to your account first!</h5>
+                    <!--<p class="card-text">Want an easier shopping experience? Login to your account first!</p>-->
+                        <form method="POST"> {% csrf_token %}
+                    	  {{ form }}
+                	    <button type="submit" class="btn btn-default" style="background-color:grey; color:white;">Login</button>
+                        <i class="fa fa-user fa-2x"></i><br/>Add to cart</a>
+                        </form>
+                  </div>
+                </div>
+            </center>
+        </div>
+    </div>
+{% endblock %}
+

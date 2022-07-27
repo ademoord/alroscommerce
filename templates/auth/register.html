@@ -1,5 +1,17 @@
+<!--
 
-<form method="POST"> {% csrf_token %}
-	{{ form }}
-	<button type="submit" class="btn btn-default">Submit</button>
-</form>
+    file: auth/register.html
+	author: andromeda
+    desc: HTML template to display the user registration page
+
+-->
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="POST"> {% csrf_token %}
+    	{{ form }}
+    	<button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+{% endblock %}
